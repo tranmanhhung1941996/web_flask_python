@@ -1,0 +1,42 @@
+/*<!DOCTYPE html>
+<html>
+<head>
+  <title>Search restaurant (For Map)</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1> Welcome to the restaurant search website </h1>
+  <h2> <img src = "https://media.foody.vn/images/1-1432847653341.jpg"/> </h2>
+  <div id="hmenu">
+	   <ul>
+	    <li><a href="{{url_for('index')}}">Home</a></li>
+	    <li><a href="{{url_for('search')}}">Search</a></li>
+	   </ul>
+  </div>
+   <h3>Ban muon an gi? O Dau? TIM KIEM NGAY</h3>
+  {% block content %} {% endblock %}
+</body>
+</html>*/
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-color: orange;
+    background-image: "https://i.ytimg.com/vi/DuNiDmRoy1Q/hqdefault.jpg";
+    background-repeat: repeat-x;
+}
+h1 {
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+</style>
+</head>
+<body>
+
+</body>
+</html>

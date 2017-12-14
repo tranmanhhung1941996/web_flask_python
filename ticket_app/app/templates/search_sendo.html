@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+table#t01 {
+    width: 100%;    
+    background-color: #f1f1c1;
+}
+h4 {
+	text-align: center;
+}
+</style>
+
+<body>
+<h3>{{title}}</h3>
+<center><iframe width="1000" height="500" src="https://www.youtube.com/embed/32i5ijXkx78?autoplay=1" frameborder="0" allowfullscreen></iframe></center>
+<h4><img src = "https://checkout.scdn.vn/images/ecom/logo/logo-sendo_09-16.jpg" width="1200" height="600"/></h4>
+<form action="" method="post" name="search_product">
+{{form.hidden_tag()}}
+	<center><p> Please enter product name you’d like to find:
+	<br>{{form.sendo_name(size=60)}}<br>
+	</p></center>
+    	<center><p><input type="submit" value="Find now"></p></center>
+</body>
+</form>
+{% if posts %}
+<h5>Search Results:</h5>
+
+<table id="t01" style="width:100%">
+    <thead>
+        <tr>
+            <th> # </th>
+            <th> Product name </th>
+            <th> Price </th>
+            <th> Detail </th>
+	    <th> Price/Ship(VND) </th>
+	    <th> Other Infor </th>
+	    <th> Work Times  </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in posts %}
+        <tr>
+	    
+            <td>{{ p[0] }}</td>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td>{{ p[3] }}</td>	
+	    <td><center>{{ p[4] }}</center></td>
+	    <td><center>{{ "None" }}</center></td>
+	    <td><center>{{ "24/24h" }}</center></td>
+        </tr> 
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %} 
+</html>

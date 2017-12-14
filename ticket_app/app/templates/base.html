@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=”UTF-8″>
+<style>
+  <title>Search Restaurant (For Map)</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css"
+	href="{{ url_for('static',filename='style.css') }}">
+body{
+}
+h1 {
+    font-weight: normal;
+    text-align: center;
+    font-size: 50px;
+}
+h2 {
+    font-weight: normal;
+    text-align: center;
+}
+h3 {
+    font-weight: normal;
+    text-align: center;
+    font-size: 40px;
+}
+p {
+    font-family: verdana;
+    font-size: 30px;
+}
+#menu li {
+  color: #f1f1f1;
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: -5px;
+}
+#menu ul {
+  background: #1F568B;
+  list-style-type: none;
+  overflow: hidden;
+  width: 100%;
+}
+#menu a {
+   text-align: center;
+  text-decoration: none;
+  color: #fff;
+  display: block;
+}
+#menu a:hover {
+  background: #F1F1F1;
+  color: #333;
+}
+</style>
+</head>
+<body>
+  <body style="background-color:White;">
+
+  <center><h1>	Welcome to the Searching Website  </h1></center>
+  <div id="menu">   
+	<ul>
+	    <li><a href="{{url_for('index')}}"><center>Home</center></a></li> 
+            <li><a href="{{url_for('search_tiki')}}"><center>Tiki</center></a></li>
+            <li><a href="{{url_for('search_foody')}}">Foody</a></li>
+	    <li><a href="{{url_for('search_vatgia')}}">VatGia</a></li>
+            <li><a href="{{url_for('search_thegioididong')}}">Thegioididong</a></li>
+            <li><a href="{{url_for('search_sendo')}}">Sendo</a></li>
+            <li><a href="{{url_for('search_lazada')}}">Lazada</a></li>
+	    <li><a href="{{url_for('history')}}">Registration</a></li>
+            <li><a href="{{url_for('admin')}}"><center>Admin</center></a></li>
+            <li><a href="{{url_for('feedback')}}"><center>FeedBack</center></a></li>
+	</ul>	   
+  </div>
+   <h2> <img src = "https://lh3.googleusercontent.com/6oXuuNUPs3LvI_8tdFrwVXmGm4s4DAnsumGG10Ay5UmRCwJe0bojXcLq7_J4FtHCsoLLWoVNM_kgi8t-2T_d-7Z4x3JNGWCuIj3Rvdd1DQfeJbeE2DuQTBBwlxaC9KbFesq47LALluXXZTK-M6h7rOVywstEXyMivjEx8Z-n3LP0BDB3VmmG4AXOwlMLzeHuW5aZMwiQOsWIdcHlVaBqGQqI1jGUU-NnUaKbDHQMf_Q76nN-0l8dqudxD4b6SslGsTesLH1MAhlSnQKtX-cW7KpfgplbSeq9j4rO-Lsp3og6RtSD7xP3Fhl8hQnJGmfvM9elMgYlb9PD7u3NFAag2Ek5y2sIFyVC2TXiJm5TwUGLFlTyEhyVTVH16WI4R6aTXSxZ2v3i8erud5gQ8WUBlXYbRV_9SKA9XeAi1MJjqKiLuqdRrW6wXVFgPUVcjdDNNwDYfJ6M5MG-0oqe8l608RzelYo4TGgCxowegpzukQGHV8GhrjU8yb35SNF24W8OL2d6WLU3PzIQuGmjjRhEL0OLzv7sGDZGD4jfucH9qhCWMcsepM-WgxUpfOSysXojbe4SQS5w4x_TswHMyFw4eLzzIMggtE7V-P1GTxmeYDyo12KZlVZk=w1229-h691-no" width="1200" height="350"/> </h2>
+
+<center><p id="demo">Map location</p></center>
+<center><button onclick="getLocation()">Try It</button></center>
+<div id="mapholder"></div>
+
+<script></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+<script>
+var x = document.getElementById("demo");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+    var latlon = new google.maps.LatLng(lat, lon)
+    var mapholder = document.getElementById('mapholder')
+    mapholder.style.height = '250px';
+    mapholder.style.width = '500px';
+
+    var myOptions = {
+    center:latlon,zoom:14,
+    mapTypeId:google.maps.MapTypeId.ROADMAP,
+    mapTypeControl:false,
+    navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+    }
+    
+    var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
+    var marker = new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
+</script>
+</head>
+<body>
+  {% block content %}  {% endblock %}
+</body>
+</html>

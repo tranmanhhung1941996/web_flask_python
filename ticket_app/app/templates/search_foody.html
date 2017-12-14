@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+table#t01 {
+	width: 100%;
+	background-color: #f1f1c1;
+}
+h4 {
+	text-align: center;
+}
+</style>
+
+<body>
+<h3>{{title}}</h3>
+<center><iframe width="1000" height="700" src="https://www.youtube.com/embed/fiTVWUpnn5s?autoplay=1" frameborder="0" allowfullscreen></iframe></center>
+<h4><img src = "https://media.foody.vn/images/1(1623).jpg" width="1000" height="600"/></h4>
+<form action="" method="post" name="event_search">
+{{form.hidden_tag()}}
+	<center><p> Please enter restaurant's name or food's name you’d like to find:
+	<br>{{form.foody_name(size=60)}}<br>
+	</p></center>
+	<center><p> Your place: {{form.position(size=60)}} </p></center>
+    	<center><p> Select a place: {{form.location}} </p></center>
+    	<center><p><input type="submit" value="Find now"></p></center>
+</body>
+</form>
+{% if posts %}
+<h5>Search Results:</h5>
+<body>
+<table id="t01" style="width:100%">
+    <thead> 
+        <tr>
+            <th> # </th>
+            <th> Place </th>
+            <th> Address </th>
+            <th> District </th>
+            <th> City </th>
+            <th> Distance (Km) </th>
+	    <th> Price/Ship (K) </th>
+	    <th> Other Infor </th>
+	    <th> Work Times  </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in posts %}
+        <tr>
+            <td>{{ p[0] }}</td>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td>{{ p[3] }}</td>
+	    <td><center>{{ p[4] }}</center></td>
+            <td><center>{{ p[5] }}</center></td>
+	    {{ p[6] }}
+	    <td><center>{{ "None" }}</center></td>
+	    <td><center>{{ "5h30 - 23h30" }}</center></td>
+        </tr> 
+        {% endfor %}
+    </tbody>
+</body>
+</table>
+{% endif %}
+{% endblock %} 
+</html>

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Registration</h2>
+<form action="welcome.php"method=”get”>
+  <fieldset>
+    <legend>Personal information:</legend>
+    First name:<br>
+    <input type="text" name="firstname" value="PTTC">
+    <br>
+    Last name:<br>
+    <input type="text" name="lastname" value="2406">
+    <br>
+    Birthday:<br>
+  	<input type="date" name="bday" value="24/06/1996">
+    <br>
+    Phone Number:<br>
+	<input type="number" name="sdt">
+    <br>
+    Email:<br>
+	<input type="text" name="email">
+    <br>
+    	<input type="radio" name="gender" value="male" checked> NAM<br>
+	<input type="radio" name="gender" value="female"> Nữ<br>
+	<input type="radio" name="gender" value="other"> Khác
+    <br><br>
+    <input type="submit" value="Submit">
+  </fieldset>
+</form>
+
+<h3>Thanks You</h3>
+
+</body>
+</html>
+{% endblock %} 
